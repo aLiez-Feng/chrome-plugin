@@ -4,7 +4,7 @@ const path = require("path");
 // Generate pages object
 const pagesObj = {};
 
-const chromeName = ["popup", "options", "content"];
+const chromeName = ["popup", "options", "content", "background"];
 
 chromeName.forEach(name => {
   pagesObj[name] = {
@@ -39,5 +39,27 @@ module.exports = {
       filename: 'js/[name].js'
     },
     plugins: [CopyWebpackPlugin(plugins)]
+  },
+  chainWebpack: config => {
+    // 处理字体文件名，去除hash值
+    const imgRule = config.module.rule('images')
+    const fontsRule = config.module.rule('fonts')
+    fontsRule.uses.clear()
+    imgRule.uses.clear()
+    fontsRule.test(/\.(woff2?|eot|ttf|otf)(\?.*)?$/i)
+      .use('url')
+      .loader('url-loader')
+      .options({
+        limit: 1000,
+        name: 'fonts/[name].[ext]'
+      })
+    imgRule.test(/\.(png|jpg|gif|webp)$/i)
+      .use('url')
+      .loader('url-loader')
+      .options({
+        limit: 1000,
+        name: 'img/[name].[ext]'
+      })
   }
+
 };

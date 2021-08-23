@@ -1,24 +1,3 @@
 # chrome-devtools
 
-## Project setup
-```
-yarn install
-```
-
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+> 给公司不同部门测试开发的统一插件，主要用于不同部门测试数据时手动增、删、改的痛点，本插件可以实现一键添加、删除、修改功能
